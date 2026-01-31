@@ -2,7 +2,7 @@ pipeline {
     // 不在顶层指定全局agent，允许每个stage灵活定义
     agent none
     stages {
-        tage('Initialize') {
+        stage('Initialize') {
             steps {
                 script {
                     // 获取自动安装的Docker工具的路径，并将其添加到环境变量PATH中
@@ -13,7 +13,7 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        
+
         stage('Checkout') {
             agent {
                 docker {
