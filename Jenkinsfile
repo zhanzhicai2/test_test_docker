@@ -16,12 +16,7 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Example') {
-            steps {
-                echo 'Hello, World!' // 一个简单的测试步骤
-            }
-        }
+        
         
         stage('Test') {
             agent {
