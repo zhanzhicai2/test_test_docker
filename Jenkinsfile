@@ -1,6 +1,8 @@
 pipeline {
     // 不在顶层指定全局agent，允许每个stage灵活定义
-    agent none
+    agent {
+        label 'linux'
+    }
     stages {
         stage('Initialize') {
             steps {
