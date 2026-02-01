@@ -3,13 +3,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps{
-                // hello world
-                echo 'Hello World'
-            }
             steps {
                 // 检出代码
                 checkout scm
+                // hello world
+                echo 'Hello World'
             }
         }
 
@@ -20,6 +18,18 @@ pipeline {
                 sh 'pip install -r requirements.txt'
                 sh 'cd ./tests && pytest test_main.py::test_health_check'
             }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline finished'
+        }
+        success {
+            echo 'Pipeline succeeded'
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
