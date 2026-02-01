@@ -16,7 +16,7 @@ pipeline {
                 sh 'python -V'
                 sh 'pip -V'
                 sh 'pip install -r requirements.txt'
-                sh 'cd ./tests && pytest test_main.py::test_health_check'
+                sh 'cd ./tests && python3 -m pytest test_main.py::test_health_check'
             }
         }
     }
