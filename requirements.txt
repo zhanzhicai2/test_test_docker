@@ -1,2 +1,3 @@
 requests
 pytest
+allure-pytest==2.15.3

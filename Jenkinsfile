@@ -16,7 +16,15 @@ pipeline {
                 sh 'python -V'
                 sh 'pip -V'
                 sh 'pip install -r requirements.txt'
-                sh 'cd ./tests && python3 -m pytest test_main.py'
+                sh 'cd ./tests && python3 -m pytest test_main.py --alluredir=../allure-results --clean-alluredir'
+            }
+        }
+        stage('Publish Allure Report') {
+            steps {
+                // 关键步骤：发布Allure报告
+                allure includeProperties: false, 
+                      jdk: '', 
+                      results: [[path: 'allure-results']] // 此路径需与--alluredir参数指定的路径一致
             }
         }
     }
