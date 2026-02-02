@@ -20,6 +20,7 @@ pipeline {
                 sh 'python -V'
                 sh 'pip -V'
                 sh 'pip install -r requirements.txt'
+                sh 'mkdir -p allure-results' // 确保目录存在
                 sh 'cd ./tests && python3 -m pytest test_main.py --alluredir=./allure-results --clean-alluredir'
             }
         }
