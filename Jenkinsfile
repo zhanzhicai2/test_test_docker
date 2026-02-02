@@ -20,7 +20,7 @@ pipeline {
                 sh 'python -V'
                 sh 'pip -V'
                 sh 'pip install -r requirements.txt'
-                sh 'cd ./tests && python3 -m pytest test_main.py --alluredir=../allure-results --clean-alluredir'
+                sh 'cd ./tests && python3 -m pytest test_main.py --alluredir=./allure-results --clean-alluredir'
             }
         }
         stage('Publish Allure Report') {
