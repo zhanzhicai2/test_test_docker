@@ -1,5 +1,9 @@
 pipeline {
     agent any // 此时代理会使用已挂载Docker的Jenkins容器
+    tools {
+        // 使用在Jenkins全局工具中配置的Allure命令行工具，名称需与你的配置一致
+       allure 'Allure' 
+    }
 
     stages {
         stage('Checkout') {
