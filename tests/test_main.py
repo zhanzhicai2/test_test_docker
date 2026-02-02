@@ -1,14 +1,14 @@
 
 import pytest
 import requests
-import allure
+# import allure
 
 
 url = "http://47.101.36.103:8000"
 
-@allure.feature("Health Check")
-@allure.story("Check API Health")
-@allure.title("Test Health Check")
+# @allure.feature("Health Check")
+# @allure.story("Check API Health")
+# @allure.title("Test Health Check")
 def test_health_check():
     response = requests.get(f"{url}/health")
     assert response.status_code == 200
