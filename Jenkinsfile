@@ -28,7 +28,7 @@ pipeline {
             emailext (
                 subject: "'${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}!'",
                 body: '${DEFAULT_CONTENT}', // 使用系统配置的默认内容
-                to: '', // 可以在这里指定收件人，如: 'team@example.com'
+                to: '1610893869@qq.com', // 可以在这里指定收件人，如: 'team@example.com'
                 mimeType: 'text/html'
             )
         }
