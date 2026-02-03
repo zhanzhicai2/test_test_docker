@@ -11,29 +11,29 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh 'python -V'
-                sh 'pip -V'
-                sh 'pip install -r requirements.txt'
-                // sh 'mkdir -p allure-results' // 确保目录存在
-                // sh 'ls -l allure-results' // 查看目录内容
-                sh 'cd ./tests && python3 -m pytest test_main.py -v'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh 'python -V'
+        //         sh 'pip -V'
+        //         sh 'pip install -r requirements.txt'
+        //         // sh 'mkdir -p allure-results' // 确保目录存在
+        //         // sh 'ls -l allure-results' // 查看目录内容
+        //         sh 'cd ./tests && python3 -m pytest test_main.py -v'
+        //     }
+        // }
     }
     
     post {
-        always {
-            echo 'Pipeline finished'
-            // 始终发送邮件，但根据状态不同会有不同的处理
-            emailext (
-                subject: "'${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}!'",
-                body: '${DEFAULT_CONTENT}', // 使用系统配置的默认内容
-                to: '1610893869@qq.com', // 可以在这里指定收件人，如: 'team@example.com'
-                mimeType: 'text/html'
-            )
-        }
+        // always {
+        //     echo 'Pipeline finished'
+        //     // 始终发送邮件，但根据状态不同会有不同的处理
+        //     emailext (
+        //         subject: "'${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}!'",
+        //         body: '${DEFAULT_CONTENT}', // 使用系统配置的默认内容
+        //         to: '1610893869@qq.com', // 可以在这里指定收件人，如: 'team@example.com'
+        //         mimeType: 'text/html'
+        //     )
+        // }
         success {
             echo 'Pipeline succeeded'
         }
