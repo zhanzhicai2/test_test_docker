@@ -16,8 +16,8 @@ pipeline {
                 sh 'python -V'
                 sh 'pip -V'
                 sh 'pip install -r requirements.txt'
-                sh 'mkdir -p allure-results' // 确保目录存在
-                sh 'ls -l allure-results' // 查看目录内容
+                // sh 'mkdir -p allure-results' // 确保目录存在
+                // sh 'ls -l allure-results' // 查看目录内容
                 sh 'cd ./tests && python3 -m pytest test_main.py'
             }
         }
