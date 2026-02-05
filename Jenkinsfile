@@ -9,7 +9,7 @@ pipeline {
     }
     triggers {
         // 例如，这里可以保留你已有的GitHub Webhook或轮询SCM的触发器
-        pollSCM('H/5 * * * *') // 每5分钟检查一次代码变更[7](@ref)
+        pollSCM('H/2 * * * *') // 每2分钟检查一次代码变更[7](@ref)
     }
 
     stages {
