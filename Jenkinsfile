@@ -5,7 +5,7 @@ pipeline {
        allure 'Allure' 
      }
      options {
-        quietPeriod(300)
+        quietPeriod(150) // 设置安静期为150秒，避免频繁触发构建
     }
     triggers {
         // 例如，这里可以保留你已有的GitHub Webhook或轮询SCM的触发器
