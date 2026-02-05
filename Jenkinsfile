@@ -48,7 +48,7 @@ pipeline {
             )
         }
         success {
-            echo 'Pipeline succeeded 你真厉害这都被你完成了'
+            echo 'Pipeline succeeded 你真厉害这都被你完成了，测试git提交代码测试'
         }
         failure {
             echo 'Pipeline failed'
