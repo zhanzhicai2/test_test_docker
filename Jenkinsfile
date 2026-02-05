@@ -4,6 +4,13 @@ pipeline {
         // 使用在Jenkins全局工具中配置的Allure命令行工具，名称需与你的配置一致
        allure 'Allure' 
      }
+     options {
+        quietPeriod(300)
+    }
+    triggers {
+        // 例如，这里可以保留你已有的GitHub Webhook或轮询SCM的触发器
+        pollSCM('H/5 * * * *') // 每5分钟检查一次代码变更[7](@ref)
+    }
 
     stages {
         stage('Checkout') {
