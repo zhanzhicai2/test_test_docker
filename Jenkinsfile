@@ -55,7 +55,7 @@ pipeline {
             )
         }
         success {
-            echo 'Pipeline succeeded 你真厉害这都被你完成了，测试git提交代码测试'
+            echo 'Pipeline succeeded 你真厉害这都被你完成了，测试git提交代码测试设置，已经150s安静期'
         }
         failure {
             echo 'Pipeline failed'
