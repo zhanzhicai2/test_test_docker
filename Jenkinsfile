@@ -1,6 +1,7 @@
 pipeline {
     // agent any // 此时代理会使用已挂载Docker的Jenkins容器
-    agent { node { label 'node-test' } }
+    // agent { node { label 'node-test' } } // 直接指定使用标签为node-test的节点
+    agent { node { label 'node-test-javaweb' } } // 直接指定使用标签为node-test-javaweb的节点
     tools {
         // 使用在Jenkins全局工具中配置的Allure命令行工具，名称需与你的配置一致
        allure 'Allure' 
