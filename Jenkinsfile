@@ -21,7 +21,7 @@ pipeline {
                 // hello world
                 echo 'Hello World'
                 echo "当前运行节点：${env.NODE_NAME}" // 打印节点名称，验证是否是Node-test
-                echo "Mac本机路径：$(pwd)"
+                echo "本机目录：${env.WORKSPACE}" // 打印本机目录，验证是否是Mac的Jenkins工作目录
             }
         }
 
