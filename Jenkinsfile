@@ -23,11 +23,15 @@ pipeline {
                 echo 'Hello World'
                 echo "当前运行节点：${env.NODE_NAME}" // 打印节点名称，验证是否是Node-test
                 echo "本机目录：${env.WORKSPACE}" // 打印本机目录，验证是否是Mac的Jenkins工作目录
+
             }
         }
 
         stage('Test') {
             steps {
+                sh 'echo $PATH' // 查看代理进程的PATH
+                sh 'which allure' // 查看代理进程能否找到allure
+                sh '/usr/local/bin/allure --version' // 验证绝对路径是否可用
                 sh 'python3 -V'
                 sh 'pip3 -V'
                 sh 'pip3 install -r requirements.txt'
