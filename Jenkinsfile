@@ -6,7 +6,7 @@ pipeline {
        allure 'Allure' 
      }
      options {
-        quietPeriod(150) // 设置安静期为150秒，避免频繁触发构建
+        quietPeriod(50) // 设置安静期为150秒，避免频繁触发构建
     }
     triggers {
         // 例如，这里可以保留你已有的GitHub Webhook或轮询SCM的触发器
@@ -27,9 +27,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'python -V'
-                sh 'pip -V'
-                sh 'pip install -r requirements.txt'
+                sh 'python3 -V'
+                sh 'pip3 -V'
+                sh 'pip3 install -r requirements.txt'
                 sh 'mkdir -p allure-results' // 确保目录存在
                 sh 'ls -l allure-results' // 查看目录内容
                 sh 'cd ./tests && python3 -m pytest test_main.py --alluredir=../allure-results --clean-alluredir' // 使用绝对路径存放Allure结果
