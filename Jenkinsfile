@@ -29,9 +29,6 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo $PATH' // 查看代理进程的PATH
-                sh 'which allure' // 查看代理进程能否找到allure
-                sh '/usr/local/bin/allure --version' // 验证绝对路径是否可用
                 sh 'python3 -V'
                 sh 'pip3 -V'
                 sh 'pip3 install -r requirements.txt'
