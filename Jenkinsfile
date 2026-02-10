@@ -44,17 +44,24 @@ pipeline {
             steps { // 关键步骤：发布Allure报告 node-test-javaweb node-test 本机MacBookpro获取报告方式
                 // 手动生成报告
                 sh '/usr/local/bin/allure generate ./allure-results -o ./allure-report --clean'
+                // 第二步：归档报告文件（Jenkins原生步骤，无需插件）
+                archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+                // 第三步：仍用Allure插件发布（关键：在节点工具配置中指定Allure路径）
+                script {
+                    // 手动指定Allure路径，覆盖插件的默认查找逻辑
+                    env.ALLURE_HOME = '/usr/local/bin'
+                }
                 // 发布HTML报告
-                publishHTML(
-                    target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'allure-report',
-                        reportFiles: 'index.html',
-                        reportName: 'Allure接口自动化测试报告'
-                    ]
-                )
+                // publishHTML(
+                //     target: [
+                //         allowMissing: false,
+                //         alwaysLinkToLastBuild: true,
+                //         keepAll: true,
+                //         reportDir: 'allure-report',
+                //         reportFiles: 'index.html',
+                //         reportName: 'Allure接口自动化测试报告'
+                //     ]
+                // )
                 // 保留原Allure插件发布（可选）
                 allure includeProperties: false, 
                       jdk: '', 
