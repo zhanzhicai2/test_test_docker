@@ -41,13 +41,33 @@ pipeline {
             }
         }
         stage('Publish Allure Report') {
-            steps {
-                // 关键步骤：发布Allure报告
+            steps { // 关键步骤：发布Allure报告 node-test-javaweb node-test 本机MacBookpro获取报告方式
+                // 手动生成报告
+                sh '/usr/local/bin/allure generate ./allure-results -o ./allure-report --clean'
+                // 发布HTML报告
+                publishHTML(
+                    target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'allure-report',
+                        reportFiles: 'index.html',
+                        reportName: 'Allure接口自动化测试报告'
+                    ]
+                )
+                // 保留原Allure插件发布（可选）
                 allure includeProperties: false, 
                       jdk: '', 
-                         resultPolicy: 'LEAVE_AS_IS',
-                      results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
+                      resultPolicy: 'LEAVE_AS_IS',
+                      results: [[path: "allure-results"]]
             }
+            // steps {
+            //     // 关键步骤：发布Allure报告
+            //     allure includeProperties: false, 
+            //           jdk: '', 
+            //              resultPolicy: 'LEAVE_AS_IS',
+            //           results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
+            // }
         }
     }
     
