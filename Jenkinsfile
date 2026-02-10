@@ -1,5 +1,6 @@
 pipeline {
-    agent any // 此时代理会使用已挂载Docker的Jenkins容器
+    // agent any // 此时代理会使用已挂载Docker的Jenkins容器
+    agent { node { label 'node-test' } }
     tools {
         // 使用在Jenkins全局工具中配置的Allure命令行工具，名称需与你的配置一致
        allure 'Allure' 
@@ -19,6 +20,8 @@ pipeline {
                 checkout scm
                 // hello world
                 echo 'Hello World'
+                echo "当前运行节点：${env.NODE_NAME}" // 打印节点名称，验证是否是Node-test
+                echo "Mac本机路径：$(pwd)"
             }
         }
 
@@ -55,7 +58,7 @@ pipeline {
             )
         }
         success {
-            echo 'Pipeline succeeded 你真厉害这都被你完成了，测试git提交代码测试设置，已经150s安静期'
+            echo 'Pipeline succeeded 运行在Mac的Node-test节点 你真厉害这都被你完成了，测试git提交代码测试设置，已经150s安静期'
         }
         failure {
             echo 'Pipeline failed'
