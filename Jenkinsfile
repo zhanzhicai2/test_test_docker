@@ -41,16 +41,16 @@ pipeline {
             }
         }
         stage('Publish Allure Report') {
-            steps { // 关键步骤：发布Allure报告 node-test-javaweb node-test 本机MacBookpro获取报告方式
-                // 手动生成报告
-                sh '/usr/local/bin/allure generate ./allure-results -o ./allure-report --clean'
-                // 第二步：归档报告文件（Jenkins原生步骤，无需插件）
-                archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
-                // 第三步：仍用Allure插件发布（关键：在节点工具配置中指定Allure路径）
-                script {
-                    // 手动指定Allure路径，覆盖插件的默认查找逻辑
-                    env.ALLURE_HOME = '/usr/local/bin'
-                }
+            // steps { // 关键步骤：发布Allure报告 node-test-javaweb node-test 本机MacBookpro获取报告方式
+            //     // 手动生成报告
+            //     sh '/usr/local/bin/allure generate ./allure-results -o ./allure-report --clean'
+            //     // 第二步：归档报告文件（Jenkins原生步骤，无需插件）
+            //     archiveArtifacts artifacts: 'allure-report/**/*', fingerprint: true
+            //     // 第三步：仍用Allure插件发布（关键：在节点工具配置中指定Allure路径）
+            //     script {
+            //         // 手动指定Allure路径，覆盖插件的默认查找逻辑
+            //         env.ALLURE_HOME = '/usr/local/bin'
+            //     }
                 // 发布HTML报告
                 // publishHTML(
                 //     target: [
@@ -63,18 +63,18 @@ pipeline {
                 //     ]
                 // )
                 // 保留原Allure插件发布（可选）
-                allure includeProperties: false, 
-                      jdk: '', 
-                      resultPolicy: 'LEAVE_AS_IS',
-                      results: [[path: "allure-results"]]
-            }
-            // steps {
-            //     // 关键步骤：发布Allure报告
             //     allure includeProperties: false, 
             //           jdk: '', 
-            //              resultPolicy: 'LEAVE_AS_IS',
-            //           results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
+            //           resultPolicy: 'LEAVE_AS_IS',
+            //           results: [[path: "allure-results"]]
             // }
+            steps {
+                // 关键步骤：发布Allure报告
+                allure includeProperties: false, 
+                      jdk: '', 
+                         resultPolicy: 'LEAVE_AS_IS',
+                      results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
+            }
         }
     }
     
