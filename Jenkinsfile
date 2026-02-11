@@ -66,15 +66,11 @@ pipeline {
             //           results: [[path: "allure-results"]]
             // }
             steps {
-                always {
-                    echo 'Publishing Allure Report'
-                
                 // 关键步骤：发布Allure报告
-                    allure includeProperties: false, 
-                        jdk: '', 
-                            resultPolicy: 'LEAVE_AS_IS',
-                        results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
-                }
+                allure includeProperties: false, 
+                      jdk: '', 
+                         resultPolicy: 'LEAVE_AS_IS',
+                      publishAllure results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
             }
         }
     }
