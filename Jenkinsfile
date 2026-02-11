@@ -70,7 +70,7 @@ pipeline {
                 allure includeProperties: false, 
                       jdk: '', 
                          resultPolicy: 'LEAVE_AS_IS',
-                      publishAllureReports: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
+                      results: [[path: "allure-results"]] // 使用绝对路径, 此路径需与--alluredir参数指定的路径一致
             }
         }
     }
