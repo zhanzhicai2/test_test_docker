@@ -1,4 +1,9 @@
+
+</think>
+
 # test_test_docker
+## Prerequisites
+Ensure `requirements.txt` exists in the repository root and contains dependencies like `pytest` and `requests` before running the pipeline.
 # test_test_docker 23
 // pipeline {
 //     agent any // 此时代理会使用已挂载Docker的Jenkins容器
@@ -57,4 +62,3 @@
 //         }
 //     }
 // }
-
